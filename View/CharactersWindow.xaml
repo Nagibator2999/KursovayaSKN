@@ -1,0 +1,49 @@
+﻿<Window x:Class="KursovayaP.CharactersWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:KursovayaP"
+        mc:Ignorable="d"
+        Title="CharactersWindow" Height="450" Width="800">
+    <Window.Resources>
+        <DataTemplate x:Key="CharacterTemplate">
+            <Button Click="CharacterButton_Click" 
+                    Width="150" 
+                    Height="200" 
+                    Margin="5"
+                    Background="{Binding Image}">
+                <Button.Content>
+                    <StackPanel>
+                        <Image Width="150" 
+                               Height="150" 
+                               Stretch="UniformToFill"
+                               Source="{Binding Image}">
+                        </Image>
+                        <TextBlock Text="{Binding Name}"                                  
+                                   FontWeight="Bold" 
+                                   FontSize="16" 
+                                   Foreground="SlateGray" 
+                                   HorizontalAlignment="Center"/>
+                        <TextBlock Text="{Binding Element}"                                    
+                                   FontSize="14" 
+                                   Foreground="SlateGray" 
+                                   HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </Button.Content>
+            </Button>
+        </DataTemplate>
+    </Window.Resources>
+    <Grid>
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <ItemsControl ItemsSource="{Binding Characters}" 
+                          ItemTemplate="{StaticResource CharacterTemplate}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+            </ItemsControl>
+        </ScrollViewer>
+    </Grid>
+</Window>
